@@ -1,0 +1,52 @@
+export const dynamic = 'force-dynamic';
+import Link from "next/link";
+import ParticlesCanvas from "./components/ParticlesCanvas";
+
+
+export default async function Home() {
+  const navigation = [
+    { name: 'Projects', href: '/projects' },
+    { name: 'Contact', href: '/contact' },
+  ]
+
+  // const apiBase = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_BACKEND_URL;
+
+
+  return (
+    <div className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden touch-none">
+      <ParticlesCanvas />
+      <nav className="my-6 animate-fade-in">
+        <ul className="flex gap-4 ">
+          {navigation.map((item) => (
+            <Link
+              href={item.href}
+              key={item.href}
+              className="text-sm duration-500 text-text hover:text-hover active:text-zinc-300"
+            >{item.name}</Link>
+          )
+          )}
+        </ul>
+      </nav>
+
+      <div className=" w-screen h-px block md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
+      <h1
+        style={{
+          userSelect: 'none',
+          WebkitUserSelect: 'none',
+          msUserSelect: 'none',
+          MozUserSelect: 'none'
+        }}
+        className="letter [-0.05em] text-stroke-gradient text-4xl sm:text-6xl md:text-9xl uppercase">
+        cu.dev
+      </h1>
+      <div className=" w-screen h-px block  md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
+
+
+      <div className="my-6 animate-fade-in">
+        <h2 className="text-sm text-text uppercase">
+          One dev, full stack
+        </h2>
+      </div>
+    </div>
+  );
+}
