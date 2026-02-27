@@ -49,7 +49,6 @@ export default function ParticlesCanvas() {
       update() {
         this.x += this.vx;
         this.y += this.vy;
-
         if (this.x > this.effect.width || this.x < 0) this.vx *= -1;
         if (this.y > this.effect.height || this.y < 0) this.vy *= -1;
       }

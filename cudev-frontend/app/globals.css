@@ -4,11 +4,11 @@
 :root {
   --background: #000000;
   --text: #ffffff;
-  --stroke: #ffffff;
+  --stroke: rgb(255, 255, 255);
   --gradient-from: #ffffff;
   --gradient-to: #ffffff;
   --spotlight: #ffffff1a;
-  --hover: #ffffff1a;
+  --hover: #ffffffa7;
 }
 
 /* 2. ТЕМА TAILWIND V4 (ВСЁ ВНУТРИ) */
@@ -29,49 +29,156 @@
 
   /* КЕЙФРЕЙМЫ (ВНУТРИ @theme — это база v4) */
   @keyframes fade-in {
-    0%, 75% { opacity: 0; }
-    100% { opacity: 1; }
+    0%,
+    75% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   @keyframes fade-left {
-    0% { transform: translateX(100%); opacity: 0; }
-    30% { transform: translateX(0%); opacity: 1; }
-    100% { opacity: 0; }
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    30% {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
   }
 
   @keyframes fade-right {
-    0% { transform: translateX(-100%); opacity: 0; }
-    30% { transform: translateX(0%); opacity: 1; }
-    100% { opacity: 0; }
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    30% {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 
   @keyframes fill-from-center {
-    0% { background-size: 100% 0%; line-height: 0%; letter-spacing: 2em; opacity: 0; }
-    25% { line-height: 0%; opacity: 0%; }
-    80% { opacity: 100%; }
-    100% { background-size: 100% 100%; line-height: 100%; opacity: 100%; }
+    0% {
+      background-size: 100% 0%;
+      line-height: 0%;
+      letter-spacing: 2em;
+      opacity: 0;
+    }
+
+    25% {
+      line-height: 0%;
+      opacity: 0%;
+    }
+
+    80% {
+      opacity: 100%;
+    }
+
+    100% {
+      background-size: 100% 100%;
+      line-height: 100%;
+      opacity: 100%;
+    }
   }
 
   @keyframes title {
-    0% { transform: translateY(20px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   @keyframes pings {
-    0%, 18%, 20%, 50.1%, 60%, 65.1%, 80%, 90.1%, 92% { color: rgba(255, 255, 255, 0.2); text-shadow: none; }
-    18.1%, 20.1%, 30%, 50%, 60.1%, 65%, 80.1%, 90%, 92.1%, 100% { color: #fff; text-shadow: 0 0 30px #d0d0d0; }
+    0%,
+    18%,
+    20%,
+    50.1%,
+    60%,
+    65.1%,
+    80%,
+    90.1%,
+    92% {
+      color: rgba(255, 255, 255, 0.2);
+      text-shadow: none;
+    }
+
+    18.1%,
+    20.1%,
+    30%,
+    50%,
+    60.1%,
+    65%,
+    80.1%,
+    90%,
+    92.1%,
+    100% {
+      color: #fff;
+      text-shadow: 0 0 30px #d0d0d0;
+    }
   }
 
   @keyframes turnFallSmooth {
-    0% { transform: rotate(0deg); color: #ff0000; }
-    50% { transform: rotate(180deg); }
-    75% { transform: rotate(150deg); }
-    100% { transform: rotate(150deg); }
+    0% {
+      transform: rotate(0deg);
+      color: #ff0000;
+    }
+
+    50% {
+      transform: rotate(180deg);
+    }
+
+    75% {
+      transform: rotate(150deg);
+    }
+
+    100% {
+      transform: rotate(150deg);
+    }
   }
 
   @keyframes pinger {
-    0%, 18%, 20%, 50.1%, 60%, 65.1%, 80%, 90.1%, 92% { text-shadow: none; opacity: 0.2; }
-    18.1%, 20.1%, 30%, 50%, 60.1%, 65%, 80.1%, 90%, 92.1%, 100% { text-shadow: 0 0 50px #03bcf48b; }
+
+    0%,
+    18%,
+    20%,
+    50.1%,
+    60%,
+    65.1%,
+    80%,
+    90.1%,
+    92% {
+      text-shadow: none;
+      opacity: 0.2;
+    }
+
+    18.1%,
+    20.1%,
+    30%,
+    50%,
+    60.1%,
+    65%,
+    80.1%,
+    90%,
+    92.1%,
+    100% {
+      text-shadow: 0 0 50px #03bcf48b;
+    }
   }
 }
 
