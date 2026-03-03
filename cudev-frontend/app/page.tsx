@@ -12,7 +12,7 @@ export default async function Home() {
 
 
   return (
-    <div className="flex fixed flex-col items-center justify-center w-screen h-screen touch-none select-none">
+    <div className="flex fixed flex-col items-center justify-center inset-0 touch-none select-none">
       <ParticlesCanvas />
       <nav className="animate-fade-in">
         <ul className="flex gap-4 ">
@@ -35,7 +35,7 @@ export default async function Home() {
       <div className=" w-screen h-px block md:block animate-fade-left bg-linear-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
 
       <div className=" animate-fade-in ">
-        <h2 className="text-md  uppercase">
+        <h2 className="text-md uppercase">
           One dev, full stack
         </h2>
       </div>

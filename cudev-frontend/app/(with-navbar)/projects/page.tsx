@@ -5,9 +5,11 @@ export const metadata: Metadata = {
     description: "Explore fullstack projects developed with Next.js, NestJS, and Prisma. CU.DEV showcases web apps, experiments, and technical demos.",
 };
 
- const page = () => {
+const page = () => {
     return (
-        <div>page</div>
+        <div>
+            projects
+        </div>
     )
 }
 
