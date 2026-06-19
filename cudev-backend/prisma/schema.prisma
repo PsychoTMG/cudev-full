@@ -10,6 +10,7 @@ datasource db {
 
 model Project {
   id        Int      @id @default(autoincrement())
+  slug String @unique
   title     String
   desc      String?
   fullDesc  String?

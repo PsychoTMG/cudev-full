@@ -1,15 +1,16 @@
 import { ReactNode } from "react";
 import { Navigation } from "../components/Nav";
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+
+type ChildrenProps = {
+  children: ReactNode
+}
+
+export default function RootLayout({ children }: ChildrenProps) {
   return (
-      <>
-        <Navigation />
-        {children}
-      </>
+    <>
+      <Navigation />
+      {children}
+    </>
   );
 }

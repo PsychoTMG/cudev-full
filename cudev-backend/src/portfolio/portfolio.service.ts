@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -9,6 +8,12 @@ export class PortfolioService {
 
   findAll = async () => {
     return await this.prisma.project.findMany()
+  }
+
+  findOne = async (slug: string) => {
+    return await this.prisma.project.findUnique({
+      where: { slug }
+    })
   }
 
 }

@@ -1,12 +1,14 @@
 "use client";
 import { MoveLeft } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export const Navigation = ({ href = "/" }: { href?: string }) => {
     const ref = useRef<HTMLElement>(null);
     const [isIntersecting, setIntersecting] = useState(true);
     const [open, setOpen] = useState(false);
+    const router = useRouter()
 
     useEffect(() => {
         if (!ref.current) return;
@@ -22,12 +24,14 @@ export const Navigation = ({ href = "/" }: { href?: string }) => {
     return (
         <header ref={ref}>
             <div
-                className={`fixed inset-x-0 top-0 z-50 duration-200 ${isIntersecting
-                    ? " border-transparent"
-                    : " border-border border-b"
-                    }`}
+                className={`fixed inset-x-0 top-0 z-50 duration-200 `}
             >
-                <div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto backdrop-blur">
+                <div className={`container flex flex-row-reverse items-center justify-between p-6 mx-auto backdrop-blur
+                ${isIntersecting
+                        ? " border-transparent"
+                        : " border-border border-b border-zinc-800"
+                    }
+                `}>
 
                     {/* Desktop menu */}
                     <div className="hidden md:flex justify-between gap-8">
@@ -50,16 +54,11 @@ export const Navigation = ({ href = "/" }: { href?: string }) => {
                         </div>
                     </button>
 
-                    <Link
-                        href={href}
-                        className="duration-200 text-zinc-300 hover:text-zinc-100"
-                    >
-                        <MoveLeft />
-                    </Link>
+                    <MoveLeft onClick={() => router.back()} className="duration-200 text-zinc-300 hover:text-zinc-100 cursor-pointer" />
                 </div>
 
                 {/* Mobile dropdown */}
-                <div className={`md:hidden flex flex-col transition-all duration-500 items-center  gap-4 backdrop-blur ${open
+                <div className={`md:hidden flex flex-col transition-all duration-500 items-center pb-4 border-b-1 gap-4 backdrop-blur ${open
                     ? "opacity-100 translate-y-0 "
                     : "opacity-0 -translate-y-10 pointer-events-none "}`}>
                     <Link href="/projects" onClick={() => setOpen(prev => !prev)} className="text-xl  hover:text-zinc-100">

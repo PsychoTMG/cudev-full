@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { PortfolioService } from './portfolio.service';
 
 
@@ -11,5 +11,8 @@ export class PortfolioController {
   findAll() {
     return this.portfolioService.findAll();
   }
-
+  @Get(':slug')
+  findOne(@Param('slug') slug: string) {
+    return this.portfolioService.findOne(slug);
+  }
 }

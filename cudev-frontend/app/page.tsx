@@ -34,7 +34,7 @@ export default async function Home() {
       </h1>
       <div className=" w-screen h-px block md:block animate-fade-left bg-linear-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
 
-      <div className=" animate-fade-in ">
+      <div className=" animate-fade-in">
         <h2 className="text-md uppercase">
           One dev, full stack
         </h2>

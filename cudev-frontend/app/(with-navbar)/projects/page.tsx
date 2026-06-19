@@ -1,33 +1,45 @@
+`use server`
 import Card from "@/app/components/Card";
 import { Metadata } from "next"
+import axios from "axios";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Projects – CU.DEV Portfolio",
     description: "Explore fullstack projects developed with Next.js, NestJS, and Prisma. CU.DEV showcases web apps, experiments, and technical demos.",
 };
 
-
-const projectArr = [
-    { name: 'project 1' },
-    { name: 'project 2' },
-    { name: 'project 3' },
-    { name: 'project 1' },
-    { name: 'project 2' },
-    { name: 'project 3' },
-
-]
+const api = process.env.NEXT_PUBLIC_BACKEND_URL
 
 
-const page = () => {
+interface Portfolio {
+    title: string
+    id: number
+    slug: string
+    desc: string
+
+}
+
+
+const page = async () => {
+    let portfolio: Portfolio[] = [];
+
+    try {
+        const res = await axios.get<Portfolio[]>(`${api}/portfolio`);
+        portfolio = res.data;
+    } catch (err) {
+        console.error("Ошибка при загрузке каталога:", err);
+    }
+
     return (
         <div className="px-6 pt-20 mx-auto space-y-8 max-w-7xl md:space-y-16  ">
-            <div className="mx-auto lg:mx-0">
-                <h2 className="text-3xl font-bold sm:text-4xl">Projects</h2>
-                <p className="mt-4 ">Some of the projects are from work and some are on my own time.</p>
+            <div className="pb-8">
+                <h2 className="text-4xl font-bold sm:text-4xl">Projects</h2>
+                <p className="mt-4 text-zinc-400">Some of the projects are from work and some are on my own time.</p>
             </div>
-
-            <div className="grid grid-cols-3 md:grid-cols-3 md:grid-rows-3 gap-8">
-                {projectArr.map((project, index) => {
+            <div className="border-b"></div>
+            <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-8">
+                {portfolio.map((project, index) => {
                     // Логика для первых трех
                     const isFirst = index === 0;
                     const isSecond = index === 1;
@@ -43,7 +55,9 @@ const page = () => {
                     ${index > 2 ? "md:col-span-1 " : ""} 
                 `}
                         >
-                            <Card><div className="h-20 flex items-center justify-center">{project.name}</div></Card>
+                            <Link href={`projects/${project.slug}`}>
+                                <Card><div className="space-y-4 p-4"><h1 className="text-3xl font-bold ">{project.title}</h1><p className="leading-8 text-zinc-400">{project.desc}</p> </div></Card>
+                            </Link>
                         </div>
                     );
                 })}
