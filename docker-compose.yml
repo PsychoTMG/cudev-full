@@ -18,6 +18,8 @@ services:
     build:
       context: ./cudev-backend
       dockerfile: Dockerfile
+      args:
+      - DATABASE_URL=postgresql://cudev:kotymeow161@postgres_db:5432/cudev?schema=public
     ports:
       - "3001:3001"
     depends_on:
