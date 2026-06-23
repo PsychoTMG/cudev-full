@@ -40,12 +40,12 @@ services:
   frontend:
     build:
       context: ./cudev-frontend
-      dockerfile: Dockerfile # Убедись, что файл называется так
+      dockerfile: Dockerfile 
     container_name: next_frontend
     ports:
       - "3000:3000"
     environment:
-      - BACKEND_URL=http://nest_server:3001
+      - BACKEND_URL=http://server:3001
       - NEXT_PUBLIC_BACKEND_URL=http://localhost:3001
     depends_on:
       - server

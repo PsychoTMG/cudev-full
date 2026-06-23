@@ -1,4 +1,4 @@
-`use server`
+export const dynamic = 'force-dynamic';
 import Card from "@/app/components/Card";
 import { Metadata } from "next"
 import axios from "axios";
@@ -9,15 +9,13 @@ export const metadata: Metadata = {
     description: "Explore fullstack projects developed with Next.js, NestJS, and Prisma. CU.DEV showcases web apps, experiments, and technical demos.",
 };
 
-const api = process.env.NEXT_PUBLIC_BACKEND_URL
-
+const api = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_BACKEND_URL;
 
 interface Portfolio {
     title: string
     id: number
     slug: string
     desc: string
-
 }
 
 
