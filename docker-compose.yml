@@ -1,60 +1,42 @@
-services: 
-  postgres_db: 
+services:
+  postgres_db:
     image: postgres:15
-    hostname: postgres_db
-    container_name: cudev_db
     restart: always
-    environment: 
+    environment:
       POSTGRES_DB: cudev
       POSTGRES_USER: cudev
       POSTGRES_PASSWORD: kotymeow161
-    ports: 
-      - '5433:5432'
-    # --- ВОТ ЭТО ДОБАВЛЯЕМ ---
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    # -------------------------
-    networks: 
-      - prisma-network
-    healthcheck: 
-      test: ["CMD-SHELL", "pg_isready -U cudev -d cudev"] 
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cudev -d cudev"]
       interval: 5s
       timeout: 2s
       retries: 20
 
-  server: 
-    build: 
+  server:
+    build:
       context: ./cudev-backend
       dockerfile: Dockerfile
-    container_name: nest_server # добавил для удобства, чтобы не искать по ID
-    ports: 
-      - '3001:3001'
-    depends_on: 
-      postgres_db: 
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres_db:
         condition: service_healthy
-    env_file: 
+    env_file:
       - ./cudev-backend/.env.prod
-    networks: 
-      - prisma-network
 
   frontend:
     build:
       context: ./cudev-frontend
-      dockerfile: Dockerfile 
-    container_name: next_frontend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     environment:
       - BACKEND_URL=http://server:3001
-      - NEXT_PUBLIC_BACKEND_URL=http://localhost:3001
+      - NEXT_PUBLIC_BACKEND_URL=http://186.246.14.241:3001   # замени на свой IP
     depends_on:
       - server
-    networks:
-      - prisma-network
-
-networks: 
-  prisma-network: 
-    name: prisma-network
 
 volumes:
   postgres_data:
