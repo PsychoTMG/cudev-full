@@ -41,10 +41,6 @@ services:
       - NEXT_PUBLIC_BACKEND_URL=http://186.246.14.241:3001  
     depends_on:
       - server
-    labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.frontend.rule=Host(`cudev.pro`)"
-    - "traefik.http.services.frontend.loadbalancer.server.port=3000"
 
 volumes:
   postgres_data:
