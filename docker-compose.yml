@@ -3,7 +3,7 @@ services:
     image: postgres:15
     restart: always
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       POSTGRES_DB: cudev
       POSTGRES_USER: cudev
@@ -15,8 +15,6 @@ services:
       interval: 5s
       timeout: 2s
       retries: 20
-    networks:
-      - dokploy-network
 
   server:
     build:
@@ -25,38 +23,24 @@ services:
       args:
         - DATABASE_URL=postgresql://cudev:kotymeow161@postgres_db:5432/cudev?schema=public
     ports:
-      - 3001:3001
+      - "3001:3001"
     depends_on:
       postgres_db:
         condition: service_healthy
     env_file:
       - ./cudev-backend/.env.prod
-    networks:
-      - dokploy-network
 
   frontend:
     build:
       context: ./cudev-frontend
       dockerfile: Dockerfile
     ports:
-      - 3002:3000
+      - "3002:3000"
     environment:
       - BACKEND_URL=http://server:3001
       - NEXT_PUBLIC_BACKEND_URL=http://186.246.14.241:3001
     depends_on:
       - server
-    labels:
-      - traefik.docker.network=dokploy-network
-      - traefik.http.routers.frontend.rule=Host(`cudev.pro`)
-      - traefik.http.routers.frontend.entrypoints=web
-      - traefik.http.services.frontend.loadbalancer.server.port=3000
-      - traefik.enable=true
-    networks:
-      - dokploy-network
 
 volumes:
   postgres_data:
-
-networks:
-  dokploy-network:
-    external: true
