@@ -7,15 +7,15 @@ export default async function Home() {
   const navigation = [
     { name: 'Projects', href: '/projects' },
     { name: 'Contacts', href: '/contacts' },
+    { name: 'Blogs', href: '/blogs' },
   ]
-  // const apiBase = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_BACKEND_URL;
 
 
   return (
     <div className="flex fixed flex-col items-center justify-center inset-0 touch-none select-none">
       <ParticlesCanvas />
       <nav className="animate-fade-in">
-        <ul className="flex gap-4 ">
+        <ul className="flex gap-4 text-zinc-500 pb-3">
           {navigation.map((item) => (
             <li key={item.href}>
               <Link
@@ -29,13 +29,13 @@ export default async function Home() {
       </nav>
 
       <div className="w-screen h-px block md:block animate-fade-left bg-linear-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-      <h1 className="text-stroke-gradient text-8xl sm:text-6xl md:text-9xl uppercase ">
+      <h1 className="text-stroke-gradient text-8xl sm:text-6xl md:text-9xl uppercase">
         cu.dev
       </h1>
       <div className=" w-screen h-px block md:block animate-fade-left bg-linear-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
 
       <div className=" animate-fade-in">
-        <h2 className="text-md uppercase">
+        <h2 className="text-md uppercase text-zinc-500 pt-3">
           One dev, full stack
         </h2>
       </div>

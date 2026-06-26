@@ -10,6 +10,15 @@ export const Navigation = ({ href = "/" }: { href?: string }) => {
     const [open, setOpen] = useState(false);
     const router = useRouter()
 
+
+    const handleBack = () => {
+        if (typeof window !== 'undefined' && window.history.length > 1) {
+            router.back();
+        } else {
+            router.push('/');
+        }
+    };
+
     useEffect(() => {
         if (!ref.current) return;
         const observer = new IntersectionObserver(([entry]) =>
@@ -34,12 +43,15 @@ export const Navigation = ({ href = "/" }: { href?: string }) => {
                 `}>
 
                     {/* Desktop menu */}
-                    <div className="hidden md:flex justify-between gap-8">
-                        <Link href="/projects" className="duration-200 hover:text-zinc-100">
+                    <div className="hidden md:flex justify-between gap-8 text-zinc-400">
+                        <Link href="/projects" className="duration-300 hover:text-zinc-100 transition-all">
                             Projects
                         </Link>
-                        <Link href="/contacts" className="duration-200 hover:text-zinc-100">
-                            Contacts
+                        <Link href="/contacts" className="duration-300 hover:text-zinc-100 transition-all">
+                            Contact
+                        </Link>
+                        <Link href="/blogs" className="duration-300 hover:text-zinc-100 transition-all">
+                            Blogs
                         </Link>
                         {/* <ThemeToggle /> */}
                     </div>
@@ -54,11 +66,13 @@ export const Navigation = ({ href = "/" }: { href?: string }) => {
                         </div>
                     </button>
 
-                    <MoveLeft onClick={() => router.back()} className="duration-200 text-zinc-300 hover:text-zinc-100 cursor-pointer" />
-                </div>
+                    <MoveLeft
+                        onClick={handleBack}
+                        className="duration-200 text-zinc-300 hover:text-zinc-100 cursor-pointer"
+                    />                </div>
 
                 {/* Mobile dropdown */}
-                <div className={`md:hidden flex flex-col transition-all duration-500 items-center pb-4 border-b-1 gap-4 backdrop-blur ${open
+                <div className={`md:hidden flex flex-col transition-all duration-500 items-center pb-4 border-b gap-4 backdrop-blur ${open
                     ? "opacity-100 translate-y-0 "
                     : "opacity-0 -translate-y-10 pointer-events-none "}`}>
                     <Link href="/projects" onClick={() => setOpen(prev => !prev)} className="text-xl  hover:text-zinc-100">

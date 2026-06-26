@@ -38,7 +38,7 @@ services:
       - "3002:3000"
     environment:
       - BACKEND_URL=http://server:3001
-      - NEXT_PUBLIC_BACKEND_URL=http://186.246.14.241:3001   # замени на свой IP
+      - NEXT_PUBLIC_BACKEND_URL=http://186.246.14.241:3001  
     depends_on:
       - server
 
